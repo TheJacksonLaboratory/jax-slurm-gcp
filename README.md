@@ -78,10 +78,9 @@ Steps:
 	file for more detailed information on available configuration options.
 	
 *** Prior to applying the Terraform configuration you must setup gcloud authentication ***
-	application default login for Terraform
-	```
-	$ gcloud auth application-default login
-	```
+   ```
+   $ gcloud auth application-default login
+   ```
 4. Deploy the cluster
    ```
    $ terraform init
