@@ -97,6 +97,8 @@ Steps:
    destroyed before deployment can be removed. This includes bursted instances
    that Slurm has not yet suspended.
 
+
+
 #### Defining network storage mounts
 There are 3 types of network storage sections that can be provided to the TF
 modules: `network_storage`, `login_network_storage`, and
@@ -162,6 +164,9 @@ Hello world from processor g1-compute-0-2, rank 2 out of 4 processors
    long-running customizations should be added in a custom image instead.
 
 ### Accessing Compute Nodes Directly
+   Ensure the relevant GCP project "users" group is updated with the following roles:
+   
+   ![image](https://user-images.githubusercontent.com/28009425/153027871-ae104ee5-e7ef-4443-a827-f2b338e328e1.png)
 
    There are multiple ways to connect to the compute nodes:
    1. If the compute nodes have external IPs you can connect directly to the
@@ -170,6 +175,9 @@ Hello world from processor g1-compute-0-2, rank 2 out of 4 processors
       options for connecting to the compute nodes.
    2. With IAP configured, you can SSH to the nodes regardless of external IPs or not.
       See https://cloud.google.com/iap/docs/enabling-compute-howto.
+      ```
+      $ gcloud beta compute ssh --zone "us-east1-b" "clin-hpc-login0" --tunnel-through-iap --project "jax-clin-hpc-dev-ctl-01"
+      ```
    3. Use Slurm to get an allocation on the nodes.
       ```
       $ srun --pty $SHELL
